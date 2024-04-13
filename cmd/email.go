@@ -1,6 +1,3 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -21,11 +18,11 @@ func validify(e string) {
 		return
 	}
 	if !ret.Syntax.Valid {
-		fmt.Println("email address syntax is invalid")
+		fmt.Println("Error: email address syntax is invalid")
 		return
 	}
 
-	fmt.Printf("email: %v, username: %v, domain: %v, valid: %v, has_mx_records: %v, smtp: %v, free: %v",
+	fmt.Printf("Email: %v\n Username: %v\n Domain: %v\n Valid: %v\n Has_mx_records: %v\n SMTP: %v\n Free: %v\n",
 		ret.Email,
 		ret.Syntax.Username,
 		ret.Syntax.Domain,
@@ -39,15 +36,22 @@ func validify(e string) {
 // emailCmd represents the email command
 var emailCmd = &cobra.Command{
 	Use:   "email",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "pass the email to validify it",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("email called")
+		if len(args) == 0 {
+			fmt.Println("Error: No input email provided, use -h for more details")
+			return
+		}
+		text := `
+		┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+		│ _______ _______ _______ _____             _    _ _______        _____ ______  _____ _______ __   __│
+		│ |______ |  |  | |_____|   |   |            \  /  |_____| |        |   |     \   |   |______   \_/  │
+		│ |______ |  |  | |     | __|__ |_____        \/   |     | |_____ __|__ |_____/ __|__ |          |   │
+		│                                                                                                    │
+		└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+		`
+
+		fmt.Println(text)
 		validify(args[0])
 	},
 }
