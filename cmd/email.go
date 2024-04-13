@@ -14,7 +14,7 @@ var (
 func validify(e string) {
 	ret, err := verifier.Verify(e)
 	if err != nil {
-		fmt.Println("Verify email address failed, error is: ", err)
+		fmt.Println("Verify email address failed\nError: ", err)
 		return
 	}
 	if !ret.Syntax.Valid {
@@ -36,10 +36,10 @@ func validify(e string) {
 // emailCmd represents the email command
 var emailCmd = &cobra.Command{
 	Use:   "email",
-	Short: "pass the email to validify it",
+	Short: "pass the email(s) to validify",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			fmt.Println("Error: No input email provided, use -h for more details")
+			fmt.Println("Error: No input email(s) provided, use -h for more details")
 			return
 		}
 		text := `
