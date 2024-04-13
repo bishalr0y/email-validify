@@ -14,7 +14,7 @@ var (
 func validify(e string) {
 	ret, err := verifier.Verify(e)
 	if err != nil {
-		fmt.Println("verify email address failed, error is: ", err)
+		fmt.Println("Verify email address failed, error is: ", err)
 		return
 	}
 	if !ret.Syntax.Valid {
@@ -22,7 +22,7 @@ func validify(e string) {
 		return
 	}
 
-	fmt.Printf("Email: %v\n Username: %v\n Domain: %v\n Valid: %v\n Has_mx_records: %v\n SMTP: %v\n Free: %v\n",
+	fmt.Printf("Email: %v\n Username: %v\n Domain: %v\n Valid: %v\n Has MX Records: %v\n SMTP: %v\n Free: %v\n",
 		ret.Email,
 		ret.Syntax.Username,
 		ret.Syntax.Domain,
@@ -52,7 +52,11 @@ var emailCmd = &cobra.Command{
 		`
 
 		fmt.Println(text)
-		validify(args[0])
+		emails := args
+		for _, mail := range emails {
+			validify(mail)
+			fmt.Println("-----")
+		}
 	},
 }
 
