@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	emailverifier "github.com/AfterShip/email-verifier"
+	"github.com/bishalr0y/email-validify/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -42,16 +43,7 @@ var emailCmd = &cobra.Command{
 			fmt.Println("Error: No input email(s) provided, use -h for more details")
 			return
 		}
-		text := `
-		┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
-		│ _______ _______ _______ _____             _    _ _______        _____ ______  _____ _______ __   __│
-		│ |______ |  |  | |_____|   |   |            \  /  |_____| |        |   |     \   |   |______   \_/  │
-		│ |______ |  |  | |     | __|__ |_____        \/   |     | |_____ __|__ |_____/ __|__ |          |   │
-		│                                                                                                    │
-		└────────────────────────────────────────────────────────────────────────────────────────────────────┘
-		`
-
-		fmt.Println(text)
+		fmt.Println(utils.GetBanner())
 		emails := args
 		for _, mail := range emails {
 			validify(mail)

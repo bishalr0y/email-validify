@@ -1,8 +1,10 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
+	"github.com/bishalr0y/email-validify/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +15,7 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	fmt.Println(utils.GetBanner())
 	err := rootCmd.Execute()
 	if err != nil {
 		os.Exit(1)
